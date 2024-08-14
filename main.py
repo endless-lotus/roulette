@@ -28,7 +28,6 @@ def table_view():
                                 |     First Dozen    |        Second Dozen       |      Third Dozen      |                                                                   
                  """)
 
-
 #Player: Ask for BET, Ask for Starting Balance
 class Player: 
     def __init__(self, name, balance, bet, lost_money, won_money):
@@ -38,64 +37,61 @@ class Player:
         self.lost_money = 0 # holds value of money lost and maths it to balance
         self.won_money = 0 #holds value of won money and maths it to balance
 
-    #can bet be done in here?
-    # def player_is_picking_bet(self):
-    # def player_bet(self):
-    #     self.bet = int(input("{name} please place your desired bet amount. . . ").format(name=self.name))
-    #     while self.bet > self.balance:
-    #         self.bet = int(input("INVALID AMOUNT -- please enter bet amount again."))
-
     def is_picking_bet(self):
-        player_bet = int(input("""
-             ♠♤♠**♡♥♡**♦♢♦**♧♣♧**♠♤♠**♡♥♡**♦♢♦**♧♣♧**♠♤♠**♡♥♡**♦♢♦**♧♣♧**♠♤♠**♡♥♡**♦♢♦**♧♣♧**♠♤♠
-              Please pick a number for the available bets:
-              [1] {bet_a}
+        player_bet_num = int(input("""
+♠♤♠**♡♥♡**♦♢♦**♧♣♧**♠♤♠**♡♥♡**♦♢♦**♧♣♧**♠♤♠**♡♥♡**♦♢♦**♧♣♧**♠♤♠**♡♥♡**♦♢♦**♧♣♧**♠♤♠
+Please pick a number for the available bets:
+ [1] {bet_a}
               """.format(bet_a=a)))
-        return player_bet
+        if player_bet_num == 1:
+             player_bet_num = int(input("""
+Please pick which color you would like to place your bet on:
+ [1] {bet_a1}
+ [2] {bet_a2}
+                                    """.format(bet_a1=a_1, bet_a2=a_2)))
+             if player_bet_num == 1:
+                  self.bet = a_1
+             else:
+                  self.bet = a_2     
+        else:
+             print("Invalid Input please try again.")
+        return self.bet
+        
+    def is_placing_bet(self):
+         player_bet_value = int(input("For your bet placed on {bet} how much money would you like to pin on that partner? Your current balance is: {balance}\n".format(bet=self.bet, balance=self.balance)))
+         if player_bet_value > self.balance:
+              print("Woah there Partner! You don't have that much in your balance, how about you try that again.")
+         elif player_bet_value <= 0:
+             print("Inadequte amount for bet.")
+         else:
+            print("The ball is now rolling as all bets have been placed. . .")
+         return player_bet_value
         
     #player_lost_money
+    
     #player_won_money
 
 
 #Casino: show table, roll wheel, bet ends set up another bet, types of bets? Needs 6
-class Casino:
-    pass
-    def __init__(self, balance):
-        self.balance = player_balance * 10 # For the casino to play against player with --> either player wins or casino wins
-
-    def display_game_rules(self):
-        return print("""Game Rules Roulette:
-                     {name} welcome to this terminal game of roulette! Here you are able to place bets to see if you can win against the casino.
-                     This is possible via making the casino lose all of its money! 
-                     The bets are ordered by varients for instance there is {bet_a}.
-                     This is a bet in which you place in hopes the number will be {bet_a} if the number did not spin on whichever color you bet on you lose.
-                     Roulette is a very simple game that depends soley on how the outcome of the role.
-                     May the game be in your favor, good luck {name}!
-                     """.format(name=player_name, bet_a=a))
-
-    def show_bets(self):
-        print(""" 
-        These are your available bets:
-              [1] {bet_a}
-""")
+#
 
 
 #Get inf for Player:
 player_name = input("""
-                ♠♤♠**♡♥♡**♦♢♦**♧♣♧**♠♤♠**♡♥♡**♦♢♦**♧♣♧**♠♤♠**♡♥♡**♦♢♦**♧♣♧**♠♤♠**♡♥♡**♦♢♦**♧♣♧**♠♤♠
-                  Howdy partner and welcome to the casino! Just need to ask you a couple questions.
-                    Startin' with, what do they call you?
-              """)
+♠♤♠**♡♥♡**♦♢♦**♧♣♧**♠♤♠**♡♥♡**♦♢♦**♧♣♧**♠♤♠**♡♥♡**♦♢♦**♧♣♧**♠♤♠**♡♥♡**♦♢♦**♧♣♧**♠♤♠
+Howdy partner and welcome to the casino! Just need to ask you a couple questions.
+Startin' with, what do they call you?
+                 """)
 
 player_balance = int(input("""
-                ♠♤♠**♡♥♡**♦♢♦**♧♣♧**♠♤♠**♡♥♡**♦♢♦**♧♣♧**♠♤♠**♡♥♡**♦♢♦**♧♣♧**♠♤♠**♡♥♡**♦♢♦**♧♣♧**♠♤♠
-                   Well that's amazin' {name} now to play your must fill you account. 
-                   How much rootin' tootin' money would you like to play with? (Enter as int ex: 20)
-                       """.format(name=player_name)))
+Well that's amazin' {name} now to play your must fill you account. 
+How much rootin' tootin' money would you like to play with?
+                 """.format(name=player_name)))
 
 #To Run Code Between Player and Casino
 player = Player(player_name, player_balance, 0, 0, '')
-casino = Casino(player_balance)
+#casino = Casino(player_balance)
 
-casino.display_game_rules()
+#casino.display_game_rules()
 player.is_picking_bet()
+player.is_placing_bet()
