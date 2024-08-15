@@ -176,9 +176,23 @@ Please pick a number for the available bets:
             print("ERROR")
         return print("{player} you have {won_or_loss} ${bet} your current balance is: ${balance}".format(player=self.name,won_or_loss=self.bet_text,bet=self.bet_value,balance=self.balance)), self.bet_value
 
+#Add Welcome Print To Roulette
+
+
 #Get inf for Player:
 player_name = input("""
-♠♤♠**♡♥♡**♦♢♦**♧♣♧**♠♤♠**♡♥♡**♦♢♦**♧♣♧**♠♤♠**♡♥♡**♦♢♦**♧♣♧**♠♤♠**♡♥♡**♦♢♦**♧♣♧**♠♤♠
+           *          *   *    *   *   *  *  *      *              *    *
+       *  *       Welcome to Roulette!      *                   *                *
+    *  *   *                *                     *  *
+                       /------\           *                         *
+          *         ./--🔴⚫🔴--\.
+                  ./--⚫  ---  ⚫--\.                      *
+                 |--🔴  /  -  \  🔴--| *
+*                |--⚫  |  ||  | ⚫--|                *
+                 |--🔴  \  -  /  🔴--|                            *
+                  .\--⚫  ---  ⚫--/.
+            *       .\--⚫🔴⚫--/.           *
+                       \------/
 Howdy partner and welcome to the casino! Just need to ask you a couple questions.
 Startin' with, what do they call you?
                  """)
