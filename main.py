@@ -20,17 +20,17 @@ d_2 = "Second Dozen"
 d_3 = "Third Dozen"
 #table view so it takes up set amount of room!
 def table_view():
-    return print("""
-                 ♠♤♠**♡♥♡**♦♢♦**♧♣♧**♠♤♠**♡♥♡**♦♢♦**♧♣♧**♠♤♠**ROULETTE**♧♣♧**♠♤♠**♡♥♡**♦♢♦**♧♣♧**♠♤♠**♡♥♡**♦♢♦**♧♣♧**♠♤♠**♡♥♡**♦♢♦     
-                            
-                        
-                                |             1 to 18              |               19 to 36              |
-                                |--------------------|-------------|-------------|-----------------------|
-                                |  3🔴 6⚫ 9🔴 12🔴  |  15⚫ 18🔴  |  21🔴 24⚫  |  27🔴 30🔴 33⚫ 36🔴  | Red or Black
-                                |  2⚫ 5🔴 8⚫ 11⚫  |  14🔴 17⚫  |  20⚫ 23🔴  |  26⚫ 29⚫ 32🔴 35⚫  |
-                                |  1🔴 4⚫ 7🔴 10⚫  |  13⚫ 16🔴  |  19🔴 22⚫  |  25🔴 28⚫ 31⚫ 34🔴  | Odd or Even
-                                |--------------------|---------------------------|-----------------------|
-                                |     First Dozen    |        Second Dozen       |      Third Dozen      |                                                                   
+    return print("""   
+    *  *   *                *                     *  *
+                       /------\           *                         *
+          *         ./--🔴⚫🔴--\.
+                  ./--⚫  ---  ⚫--\.                      *
+                 |--🔴  /  -  \  🔴--| *
+*                |--⚫  |  ||  | ⚫--|                *
+                 |--🔴  \  -  /  🔴--|                            *
+                  .\--⚫  ---  ⚫--/.
+            *       .\--⚫🔴⚫--/.           *
+                       \------/                                                                
                  """)
 
 
@@ -184,22 +184,22 @@ player_name = input("""
            *          *   *    *   *   *  *  *      *              *    *
        *  *       Welcome to Roulette!      *                   *                *
     *  *   *                *                     *  *
-                       /------\           *                         *
-          *         ./--🔴⚫🔴--\.
-                  ./--⚫  ---  ⚫--\.                      *
-                 |--🔴  /  -  \  🔴--| *
-*                |--⚫  |  ||  | ⚫--|                *
-                 |--🔴  \  -  /  🔴--|                            *
-                  .\--⚫  ---  ⚫--/.
-            *       .\--⚫🔴⚫--/.           *
-                       \------/
-Howdy partner and welcome to the casino! Just need to ask you a couple questions.
-Startin' with, what do they call you?
+   |             1 to 18              |               19 to 36              |
+   |--------------------|-------------|-------------|-----------------------|
+   |  3🔴 6⚫ 9🔴 12🔴  |  15⚫ 18🔴  |  21🔴 24⚫  |  27🔴 30🔴 33⚫ 36🔴  | Red or Black
+   |  2⚫ 5🔴 8⚫ 11⚫  |  14🔴 17⚫  |  20⚫ 23🔴  |  26⚫ 29⚫ 32🔴 35⚫  |
+   |  1🔴 4⚫ 7🔴 10⚫  |  13⚫ 16🔴  |  19🔴 22⚫  |  25🔴 28⚫ 31⚫ 34🔴  | Odd or Even
+   |--------------------|---------------------------|-----------------------|
+   |     First Dozen    |        Second Dozen       |      Third Dozen      |   
+                     
+Howdy partner and welcome to the casino! This is your roulette board that shows all the available bets.
+                    Just need to ask you a couple questions.
+Startin' with, what is your name?
                  """)
 
 player_balance = int(input("""
-Well that's amazin' {name} now to play your must fill you account. 
-How much rootin' tootin' money would you like to play with?
+    Well that's amazin' {name} now to play your must fill you account. 
+How much money would you like to play with?
                  """.format(name=player_name)))
 
 #To Run Code Between Player and Casino
