@@ -29,7 +29,7 @@ def table_view():
 
 #Player: have a print statement return info: money lost, money won, current balance
 class Player: 
-    def __init__(self, name, balance, bet_type, bet, bet_value, is_watching_ball_roll, lost_money, won_money):
+    def __init__(self, name, balance, bet_type, bet, bet_value, is_watching_ball_roll, lost_money, won_money, bet_text):
         self.name = name # = player's name input
         self.balance = balance # = player's current monetary value
         self.bet_type = ''
@@ -38,6 +38,7 @@ class Player:
         self.is_watching_ball_roll = ''
         self.lost_money = 0 #True or False to money being lost
         self.won_money = False #True or False to money being won
+        self.bet_text = ''
 
 
     def is_picking_bet(self):
@@ -98,18 +99,17 @@ Please pick which color you would like to place your bet on:
             if self.bet_type == 1: #checking to see if its equal to a bet on Red or Black
                 #For a 1 to 1 ratio
                 self.balance += self.bet_value
+                self.bet_text = 'Won'
             else:
                 print("ERROR")
         elif self.won_money == False:
             #For self.won_money == False
             self.balance -= self.bet_value
+            self.bet_text = 'Loss'
         else:
             print("ERROR")
-        return print(self.balance) #this works and is able to be used for later implementations
-    
-#print("🔴\nCongrats {player} you have won ${bet} on your bet for {bet_type}!".format(player=self.name, bet=self.bet_value, bet_type=self.bet))
-#print("🔴⚫\n{player} its seems you have lost ${bet} on your bet for {bet_type}".format(player=self.name, bet=self.bet_value, bet_type=self.bet))
-#print("Your current balance is: ${balance}".format(balance=self.balance))
+        return print("{player} you have {won_or_loss} ${bet} your current balance is: ${balance}".format(player=self.name,won_or_loss=self.bet_text,bet=self.bet_value,balance=self.balance)), self.bet_value
+
 
 #Get inf for Player:
 player_name = input("""
@@ -124,7 +124,7 @@ How much rootin' tootin' money would you like to play with?
                  """.format(name=player_name)))
 
 #To Run Code Between Player and Casino
-player = Player(player_name, player_balance,'', '', '', '', 0, False)
+player = Player(player_name, player_balance,'', '', '', '', 0, False, '')
 
 #casino.display_game_rules()
 player.is_picking_bet()
