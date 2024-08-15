@@ -1,5 +1,5 @@
 # roulette
-Is a gambling game I created to be played fully in the terminal. It includes the common bet types that are allowed in an American roulette table. It consists of one class: Player and used random.
+Is a gambling game I created to be played fully in the terminal. It includes the common bet types that are allowed in an American roulette table. It consists of one class: Player and uses random.
 
 <h2>Bet Types</h2>
 <ul>
