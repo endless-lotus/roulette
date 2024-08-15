@@ -11,6 +11,13 @@ a_2 = "Black⚫"
 b = "Odd or Even"
 b_1 = "Odd"
 b_2 = "Even"
+c = "1 to 18 || 19 to 36"
+c_1 = "1 to 18"
+c_2 = "19 to 36"
+d = "Dozens"
+d_1 = "First Dozen"
+d_2 = "Second Dozen"
+d_3 = "Third Dozen"
 #table view so it takes up set amount of room!
 def table_view():
     return print("""
@@ -46,29 +53,44 @@ class Player:
 Please pick a number for the available bets:
  [1] {bet_a}
  [2] {bet_b}
-
-              """.format(bet_a=a, bet_b=b)))
-        if self.bet_type == 1:
+ [3] {bet_c}
+ [4] {bet_d}\n""".format(bet_a=a,bet_b=b,bet_c=c,bet_d=d)))
+        if self.bet_type == 1: #Red or Black
              player_bet = int(input("Please pick which color you would like to place for your bet:\n[1] {bet_a1}\n[2] {bet_a2}\n".format(bet_a1=a_1,bet_a2=a_2)))
-             if player_bet == 1:
+             if player_bet == 1: #for input 1
                   self.bet = a_1
-             else:
+             else: #for other inputs counted as 2
                   self.bet = a_2    
-        elif self.bet_type == 2:
-             player_bet = int(input("Please pick if you would like Odd or Evens for your bet type:\n[1] {bet_b1}\n[2] {bet_b2}\n".format(bet_b1=b_1,bet_b2=b_2)))
+        elif self.bet_type == 2: #odd or even
+             player_bet = int(input("Please pick which you would like for your bet:\n[1] {bet_b1}\n[2] {bet_b2}\n".format(bet_b1=b_1,bet_b2=b_2)))
              if player_bet == 1:
                   self.bet = b_1
              else:
                   self.bet = b_2 
+        elif self.bet_type == 3: #1-18 or 19-36
+             player_bet = int(input("Please pick which group you would like for your bet:\n[1] {bet_c1}\n[2] {bet_c2}\n".format(bet_c1=c_1,bet_c2=c_2)))
+             if player_bet == 1:
+                  self.bet = c_1
+             else:
+                  self.bet = c_2 
+        elif self.bet_type == 4: #Dozens
+             player_bet = int(input("Please pick one of the three you would like for your bet:\n[1] {bet_d1}\n[2] {bet_d2}\n[3] {bet_d3}\n".format(bet_d1=d_1,bet_d2=d_2,bet_d3=d_3)))
+             if player_bet == 1:
+                  self.bet = d_1 #first dozen
+             elif player_bet == 2:
+                 self.bet = d_2 #second dozen
+             else:
+                  self.bet = d_3 #third dozen
         else:
              print("ERROR - int input")
         return self.bet, self.bet_type
         
+    # To get the amount of money the player would like to place on the bet
     def is_placing_bet(self):
          self.bet_value = int(input("For your bet placed on {bet} how much money would you like to pin on that partner? Your current balance is: {balance}\n".format(bet=self.bet, balance=self.balance)))
-         if self.bet_value > self.balance:
+         if self.bet_value > self.balance: #to make sure no inputs are allowed higher than existing balance
               print("Woah there Partner! You don't have that much in your balance, how about you try that again.")
-         elif self.bet_value <= 0:
+         elif self.bet_value <= 0: #to make sure no inputs 0 or below are entered
              print("Inadequte amount for bet.")
          else:
             table_view()
@@ -103,16 +125,46 @@ Please pick a number for the available bets:
                 self.won_money = True
             else:
                 self.won_money = False
+        elif self.bet == c_1: #1 to 18
+            if self.is_watching_ball_roll in range(1, 19):
+                self.won_money = True
+            else:
+                self.won_money = False
+        elif self.bet == c_2: #19-36
+            if self.is_watching_ball_roll in range(19, 37):
+                self.won_money = True
+            else:
+                self.won_money = False
+        elif self.bet == d_1: #first dozen
+            if self.is_watching_ball_roll in range(1, 13):
+                self.won_money = True
+            else:
+                self.won_money = False
+        elif self.bet == d_2: #second dozen
+            if self.is_watching_ball_roll in range(13, 25):
+                self.won_money = True
+            else:
+                self.won_money = False
+        elif self.bet == d_3: #third dozen
+            if self.is_watching_ball_roll in range(25, 37):
+                self.won_money = True
+            else:
+                self.won_money = False
         else:
             print("ERROR")
         return self.won_money   
 
+#calculates balance after win or loss
     def is_calculating_balance(self):
         if self.won_money == True:
             #For different types of bets on roulette
-            if self.bet_type == 1 or self.bet_type == 2: #checking to see if its equal to a bet on Red or Black
+            if self.bet_type == 1 or self.bet_type == 2 or self.bet_type == 3: #checking to see if black/red, odd/even, or 1-18/19-36 was chosen as bet type
                 #For a 1 to 1 ratio
                 self.balance += self.bet_value
+                self.bet_text = 'won'
+            elif self.bet_type == 4: #checking to see if bet is equal to dozens
+                #Payout 2 to 1
+                self.balance += (self.bet_value * 2)
                 self.bet_text = 'won'
             else:
                 print("ERROR")
